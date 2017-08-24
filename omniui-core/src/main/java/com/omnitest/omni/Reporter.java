@@ -1,4 +1,4 @@
-package com.omni.omniutils;
+package com.omnitest.omni;
 
 public class Reporter {
 	

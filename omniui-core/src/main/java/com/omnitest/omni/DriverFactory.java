@@ -1,27 +1,20 @@
-package com.omni.omniutils;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
+package com.omnitest.omni;
 
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
+
+import static com.omnitest.omni.DriverWrapper.setChromeCapabilities;
 
 public class DriverFactory {
 	
@@ -82,10 +75,11 @@ public class DriverFactory {
      * initialization ChromeDriver
      *
      */
-    public static void initChromeDriver(Capabilities capabilities) {
-        setWebDriver(new ChromeDriver(capabilities));
-        setTimeout(SESSIONTIMEOUT);
-        getDriver().manage().window().maximize();
+    public static WebDriver initChromeDriver(String platformName) {
+        WebDriver driver = new ChromeDriver(setChromeCapabilities(platformName));
+        setDefaultTimeout(SESSIONTIMEOUT);
+        driver.manage().window().maximize();
+        return driver;
     }
 
     /**
