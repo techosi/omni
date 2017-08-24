@@ -2,6 +2,7 @@ package com.omni.omniutils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Capabilities;
@@ -21,6 +22,7 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.firefox.FirefoxOptions;;
 
 
 public class DriverFactory {
@@ -123,7 +125,32 @@ public class DriverFactory {
 		getDriver().manage().deleteCookie(cookie);
     }
     
+    /**
+     * FF certfications
+     */
     
+   @SuppressWarnings("deprecation")
+   public static void initFirefoxDriver() {
+        
+        FirefoxProfile ffProfile = new FirefoxProfile();
+        ffProfile.setAcceptUntrustedCertificates(true);
+        ffProfile.setAssumeUntrustedCertificateIssuer(true);
+        ffProfile.setPreference("javascript.enabled", true);
+        ffProfile.setPreference("dom.max_script_run_time", 0);
+        ffProfile.setPreference("dom.max_chrome_script_run_time", 0);
+        setWebDriver(new FirefoxDriver(ffProfile));
+        setTimeout(SESSIONTIMEOUT);
+        getDriver().manage().window().maximize();
+    }
+    /**
+     *  ChromeDriver certs
+     */
+    public static void initChromeDriver() {
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments(Arrays.asList("--start-maximized", "--test-type", "--ignore-certificate-errors", "--disable-popup-blocking", "--allow-running-insecure-content", "--disable-translate", "--always-authorize-plugins"));
+        setWebDriver(new ChromeDriver(chromeOptions));
+        setTimeout(SESSIONTIMEOUT);
+    }
     /**
      * Delete all cookies after session complete
      */
