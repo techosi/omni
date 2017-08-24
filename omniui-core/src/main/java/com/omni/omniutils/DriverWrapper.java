@@ -5,6 +5,10 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class DriverWrapper {
+    
+    /**
+    * Rama Tatavarthy
+    **/
 
     public static DesiredCapabilities setChromeCapabilities(String platformName) {
         System.setProperty("webdriver.chrome.driver", "chromedriver");
