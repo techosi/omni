@@ -1,5 +1,4 @@
-
-package com.omni.omniutils;
+package com.omnitest.omni;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -16,17 +15,9 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
-
-import static com.omni.omniutils.DriverWrapper.setChromeCapabilities;
+import static com.omnitest.omni.DriverWrapper.setChromeCapabilities;
 
 public class DriverFactory {
 	

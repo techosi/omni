@@ -1,4 +1,4 @@
-package com.omni.omniutils;
+package com.omnitest.omni;
 
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.chrome.ChromeOptions;

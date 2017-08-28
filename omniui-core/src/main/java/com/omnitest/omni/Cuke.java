@@ -1,4 +1,4 @@
-package com.omni.omniutils;
+package com.omnitest.omni;
 
 import cucumber.runtime.ClassFinder;
 import cucumber.runtime.CucumberException;
