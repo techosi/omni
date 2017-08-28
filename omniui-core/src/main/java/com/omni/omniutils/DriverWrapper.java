@@ -1,12 +1,16 @@
-package com.omnitest.omni;
+package com.omni.omniutils;
 
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-class DriverWrapper {
+public class DriverWrapper {
+    
+    /**
+    * Rama Tatavarthy
+    **/
 
-    static DesiredCapabilities setChromeCapabilities(String platformName) {
+    public static DesiredCapabilities setChromeCapabilities(String platformName) {
         System.setProperty("webdriver.chrome.driver", "chromedriver");
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         ChromeOptions chromeOptions = new ChromeOptions();
