@@ -7,13 +7,15 @@
   </parent>
   <artifactId>omniAutomation</artifactId>
   <dependencies>
-   <!-- https://mvnrepository.com/artifact/junit/junit -->
-	<dependency>
-	    <groupId>junit</groupId>
-	    <artifactId>junit</artifactId>
-	    <version>4.11</version>
-	    <scope>test</scope>
-	</dependency>
-   
+    <dependency>
+      <groupId>com.omnitest.omni</groupId>
+      <artifactId>omniui-core</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+      <dependency>
+          <groupId>org.testng</groupId>
+          <artifactId>testng</artifactId>
+          <version>6.9.8</version>
+      </dependency>
   </dependencies>
 </project>
