@@ -4,22 +4,27 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class DriverWrapper {
+class DriverWrapper {
     
     /**
     * Rama Tatavarthy
     **/
 
-    public static DesiredCapabilities setChromeCapabilities(String platformName) {
-        System.setProperty("webdriver.chrome.driver", "chromedriver");
+    static DesiredCapabilities setChromeCapabilities(String platformName) {
+
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("test-type");
         capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-        if(platformName.equalsIgnoreCase("mac"))
+        if(platformName.equalsIgnoreCase("mac")){
+            System.setProperty("webdriver.chrome.driver", "chromedriver");
             capabilities.setPlatform(Platform.MAC);
-        else
-            capabilities.setPlatform(Platform.WIN8);
+        }
+        else{
+            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+            capabilities.setPlatform(Platform.WINDOWS);
+
+        }
 
     return capabilities;
 }
