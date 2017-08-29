@@ -1,6 +1,7 @@
 package Scripts;
 
 import ObjectRepository.LoginPage;
+import com.omnitest.omni.DriverFactory;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
@@ -9,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import static Customization.ChromeDriver.click;
 import static Customization.ChromeDriver.launchapplication;
 import static Customization.ChromeDriver.type;
+import static com.omnitest.omni.DriverFactory.driverRun;
 
 /**
  * Created by vchilukuri on 8/28/17.
@@ -17,7 +19,7 @@ public class LogintoGmail {
 
     @Test
     public void logintest () throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "/Users/vchilukuri/chromedriver");
+/*        System.setProperty("webdriver.chrome.driver", "/Users/vchilukuri/chromedriver");
         WebDriver driver = new org.openqa.selenium.chrome.ChromeDriver();
         driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
         launchapplication("https://www.gmail.com");
@@ -28,6 +30,8 @@ public class LogintoGmail {
         click(LoginPage.sign_btn);
         Thread.sleep(1000);
         click(LoginPage.sign_header_btn);
-        Thread.sleep(100);
+        Thread.sleep(100);*/
+        DriverFactory.initChromeDriver("mac");
+        driverRun.get().get("https://www.google.co.in");
     }
 }
