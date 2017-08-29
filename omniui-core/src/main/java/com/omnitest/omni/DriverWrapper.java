@@ -14,6 +14,8 @@ class DriverWrapper {
 
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("disable-extensions");
+        chromeOptions.addArguments("--start-maximized");
         chromeOptions.addArguments("test-type");
         capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
         if(platformName.equalsIgnoreCase("mac")){

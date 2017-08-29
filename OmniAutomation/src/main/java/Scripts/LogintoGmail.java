@@ -11,6 +11,7 @@ import static Customization.ChromeDriver.click;
 import static Customization.ChromeDriver.launchapplication;
 import static Customization.ChromeDriver.type;
 import static com.omnitest.omni.DriverFactory.driverRun;
+import static com.omnitest.omni.DriverFactory.getDriver;
 
 /**
  * Created by vchilukuri on 8/28/17.
@@ -31,7 +32,8 @@ public class LogintoGmail {
         Thread.sleep(1000);
         click(LoginPage.sign_header_btn);
         Thread.sleep(100);*/
-        DriverFactory.initChromeDriver("mac");
-        driverRun.get().get("https://www.google.co.in");
+        DriverFactory.initChromeDriver("Windows");
+        getDriver().get("https://www.google.co.in");
+        getDriver().quit();
     }
 }

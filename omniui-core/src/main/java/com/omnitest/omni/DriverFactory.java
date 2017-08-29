@@ -81,7 +81,7 @@ public class DriverFactory {
     public static void initChromeDriver(String platformName) {
         setWebDriver(new ChromeDriver(setChromeCapabilities(platformName)));
         setTimeout(SESSIONTIMEOUT);
-        getDriver().manage().window().maximize();
+        //getDriver().manage().window().maximize();
     }
 
     /**
