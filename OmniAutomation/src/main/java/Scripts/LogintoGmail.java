@@ -32,7 +32,7 @@ public class LogintoGmail {
         Thread.sleep(1000);
         click(LoginPage.sign_header_btn);
         Thread.sleep(100);*/
-        DriverFactory.initChromeDriver("Windows");
+        DriverFactory.initChromeDriver(System.getProperty("os.name").toLowerCase());
         getDriver().get("https://www.google.co.in");
         getDriver().quit();
     }

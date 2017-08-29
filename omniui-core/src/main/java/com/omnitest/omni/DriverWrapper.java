@@ -18,7 +18,7 @@ class DriverWrapper {
         chromeOptions.addArguments("--start-maximized");
         chromeOptions.addArguments("test-type");
         capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-        if(platformName.equalsIgnoreCase("mac")){
+        if(platformName.contains("mac")){
             System.setProperty("webdriver.chrome.driver", "chromedriver");
             capabilities.setPlatform(Platform.MAC);
         }
