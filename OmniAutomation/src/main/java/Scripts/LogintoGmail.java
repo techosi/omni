@@ -1,17 +1,18 @@
 package Scripts;
 
-import ObjectRepository.LoginPage;
-import com.omnitest.omni.DriverFactory;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 
-import java.util.concurrent.TimeUnit;
-
-import static Customization.ChromeDriver.click;
-import static Customization.ChromeDriver.launchapplication;
-import static Customization.ChromeDriver.type;
-import static com.omnitest.omni.DriverFactory.driverRun;
+import static ObjectRepository.LoginPage.email_text;
+import static ObjectRepository.LoginPage.logout_btn;
+import static ObjectRepository.LoginPage.next_btn;
+import static ObjectRepository.LoginPage.pass_text;
+import static ObjectRepository.LoginPage.sign_btn;
+import static ObjectRepository.LoginPage.sign_header_btn;
+import static com.omnitest.omni.Actions.click;
+import static com.omnitest.omni.Actions.openapplication;
+import static com.omnitest.omni.Actions.type;
 import static com.omnitest.omni.DriverFactory.getDriver;
+import static com.omnitest.omni.DriverFactory.initChromeDriver;
 
 /**
  * Created by vchilukuri on 8/28/17.
@@ -20,20 +21,18 @@ public class LogintoGmail {
 
     @Test
     public void logintest () throws InterruptedException {
-/*        System.setProperty("webdriver.chrome.driver", "/Users/vchilukuri/chromedriver");
-        WebDriver driver = new org.openqa.selenium.chrome.ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
-        launchapplication("https://www.gmail.com");
-        type(LoginPage.email_text, "omnitestautomation");
-        click(LoginPage.next_btn);
+        initChromeDriver(System.getProperty("os.name").toLowerCase());
+        openapplication("https://www.gmail.com");
+        type(email_text, "omnitestautomation");
+        click(next_btn);
         Thread.sleep(1000);
-        type(LoginPage.pass_text, "framework");
-        click(LoginPage.sign_btn);
+        type(pass_text, "framework");
         Thread.sleep(1000);
-        click(LoginPage.sign_header_btn);
-        Thread.sleep(100);*/
-        DriverFactory.initChromeDriver(System.getProperty("os.name").toLowerCase());
-        getDriver().get("https://www.google.co.in");
+        click(sign_btn);
+        Thread.sleep(1000);
+        click(sign_header_btn);
+        Thread.sleep(1000);
+        click(logout_btn);
         getDriver().quit();
     }
 }
