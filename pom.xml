@@ -21,7 +21,6 @@
   </build>
   <modules>
   	<module>omniui-core</module>
-  	<module>omniservices</module>
   	<module>omniAutomation</module>
   </modules>
 </project>
