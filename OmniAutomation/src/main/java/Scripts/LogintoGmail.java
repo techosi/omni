@@ -27,7 +27,7 @@ public class LogintoGmail {
         try {
             startReport();
             initChromeDriver(System.getProperty("os.name").toLowerCase());
-            openapplication("https://www.twitter.com");
+            openapplication("https://www.gmail.com");
             logSuccess("gmail openend");
             type(email_text, "omnitestautomation");
             click(next_btn);
