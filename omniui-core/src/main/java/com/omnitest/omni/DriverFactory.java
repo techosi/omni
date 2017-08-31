@@ -26,8 +26,8 @@ public class DriverFactory {
 	
     
 	public static final ThreadLocal<WebDriver> driverRun = new ThreadLocal<>();
-    public static int SESSIONTIMEOUT = 60; //time in seconds
-    public static boolean CONDITIONCHECK =true;
+    private static int SESSIONTIMEOUT = 60; //time in seconds
+    private static boolean CONDITIONCHECK =true;
 
     public static WebDriver getDriver() {
         return driverRun.get();
