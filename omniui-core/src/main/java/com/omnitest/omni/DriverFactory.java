@@ -7,12 +7,15 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -118,33 +121,6 @@ public class DriverFactory {
     	Cookie cookie = null;
 		getDriver().manage().deleteCookie(cookie);
     }
-    
-    /**
-     * FF certfications
-     */
-    
-   @SuppressWarnings("deprecation")
-   public static void initFirefoxDriver() {
-        
-        FirefoxProfile ffProfile = new FirefoxProfile();
-        ffProfile.setAcceptUntrustedCertificates(true);
-        ffProfile.setAssumeUntrustedCertificateIssuer(true);
-        ffProfile.setPreference("javascript.enabled", true);
-        ffProfile.setPreference("dom.max_script_run_time", 0);
-        ffProfile.setPreference("dom.max_chrome_script_run_time", 0);
-        setWebDriver(new FirefoxDriver(ffProfile));
-        setTimeout(SESSIONTIMEOUT);
-        getDriver().manage().window().maximize();
-    }
-    /**
-     *  ChromeDriver certs
-     */
-    public static void initChromeDriver() {
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments(Arrays.asList("--start-maximized", "--test-type", "--ignore-certificate-errors", "--disable-popup-blocking", "--allow-running-insecure-content", "--disable-translate", "--always-authorize-plugins"));
-        setWebDriver(new ChromeDriver(chromeOptions));
-        setTimeout(SESSIONTIMEOUT);
-    }
     /**
      * Delete all cookies after session complete
      */
@@ -169,4 +145,57 @@ public class DriverFactory {
         getDriver().manage().getCookieNamed(null);
         
     }    
+    
+
+    /**
+     * initialization FirefoxDriver
+     */
+    @SuppressWarnings("deprecation")
+	public static void initFirefoxDriver() {
+        FirefoxProfile profile = new FirefoxProfile();
+        profile.setAcceptUntrustedCertificates(true);
+        profile.setAssumeUntrustedCertificateIssuer(true);
+        profile.setPreference("javascript.enabled", true);
+        profile.setPreference("dom.max_script_run_time", 0);
+        profile.setPreference("dom.max_chrome_script_run_time", 0);
+        setTimeout(SESSIONTIMEOUT);
+        getDriver().manage().window().maximize();
+    }
+
+    /**
+     * initialization InternetExplorerDriver
+     */
+    public static void initInternetExplorerDriver() {
+       
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setPlatform(Platform.WINDOWS);
+        capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+        capabilities.setCapability(CapabilityType.HAS_NATIVE_EVENTS, true);
+        capabilities.setJavascriptEnabled(true);
+        capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+        capabilities.setCapability(InternetExplorerDriver.IGNORE_ZOOM_SETTING, true);
+        capabilities.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
+        setWebDriver(new InternetExplorerDriver(capabilities));
+        setTimeout(SESSIONTIMEOUT);
+        getDriver().manage().window().maximize();
+    }
+
+    /**
+     * initialization ChromeDriver
+     */
+    public static void initChromeDriver() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments(Arrays.asList("--start-maximized", "--test-type", "--ignore-certificate-errors", "--disable-popup-blocking", "--allow-running-insecure-content", "--disable-translate", "--always-authorize-plugins"));
+        setWebDriver(new ChromeDriver(options));
+        setTimeout(SESSIONTIMEOUT);
+    }
+
+    /**
+     * initialization SafariDriver
+     */
+    public static void initSafariDriver() {
+        setWebDriver(new SafariDriver());
+        setTimeout(SESSIONTIMEOUT);
+        getDriver().manage().window().maximize();
+    }
 }
