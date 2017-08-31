@@ -87,7 +87,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		    <artifactId>cucumber-java8</artifactId>
 		    <version>1.2.5</version>
 		</dependency>
-	</dependencies>
+	  <dependency>
+		  <groupId>com.aventstack</groupId>
+		  <artifactId>extentreports</artifactId>
+		  <version>RELEASE</version>
+	  </dependency>
+  </dependencies>
   <dependencyManagement>
   	<dependencies>
   		<dependency>
