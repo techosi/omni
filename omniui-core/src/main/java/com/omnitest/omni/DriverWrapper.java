@@ -11,13 +11,13 @@ class DriverWrapper {
     * Rama Tatavarthy
     **/
 	
-    public static final String FIREFOX = "firefox";
-    public static final String CHROME = "chrome";
-    public static final String IE = "ie";
+    private static final String FIREFOX = "firefox";
+    private static final String CHROME = "chrome";
+    private static final String IE = "ie";
     public static final String SAFARI = "safari";
     
 
-    public static DesiredCapabilities setChromeCapabilities(String platformName) {
+    static DesiredCapabilities setChromeCapabilities(String platformName) {
 
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         ChromeOptions chromeOptions = new ChromeOptions();

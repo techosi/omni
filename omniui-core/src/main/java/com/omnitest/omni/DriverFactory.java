@@ -25,7 +25,7 @@ import static com.omnitest.omni.DriverWrapper.setChromeCapabilities;
 public class DriverFactory {
 	
     
-	public static final ThreadLocal<WebDriver> driverRun = new ThreadLocal<>();
+	private static final ThreadLocal<WebDriver> driverRun = new ThreadLocal<>();
     private static int SESSIONTIMEOUT = 60; //time in seconds
     private static boolean CONDITIONCHECK =true;
 
@@ -33,11 +33,11 @@ public class DriverFactory {
         return driverRun.get();
     }
 
-    public static void setWebDriver(WebDriver webDriver) {
+    private static void setWebDriver(WebDriver webDriver) {
         driverRun.set(webDriver);
     }
     
-    public static void setTimeout(int timeout) {
+    private static void setTimeout(int timeout) {
         getDriver().manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
         getDriver().manage().timeouts().setScriptTimeout(timeout, TimeUnit.SECONDS);
     }
