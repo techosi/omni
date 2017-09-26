@@ -10,9 +10,8 @@ import cucumber.runtime.io.ResourceLoaderClassFinder;
 import org.apache.commons.io.FilenameUtils;
 import org.testng.ITest;
 import org.testng.annotations.Test;
-
+import cucumber.runtime.Runtime;
 import java.io.IOException;
-
 
 /**
  * Cucumber implementation.
@@ -21,56 +20,56 @@ import java.io.IOException;
  */
 public class Cuke implements ITest {
 
-    private final String feature;
-    private final String tags;
-    private cucumber.runtime.Runtime cukeruntime;
+	private final String feature;
+	private final String tags;
+	private Runtime cukeruntime;
 
-    public Cuke(String feature, String tags) {
-        this.feature = feature;
-        this.tags = tags;
-        this.cukeruntime = null;
-    }
-    @Override
-    public String getTestName() {
-        return FilenameUtils.getName(feature);
-    }
+	public Cuke(String feature, String tags) {
+		this.feature = feature;
+		this.tags = tags;
+		this.cukeruntime = null;
+	}
 
-    @Test(groups = "cukes", description = "Runs Cuke Features")
-    public void CukerRunner() throws Throwable {
+	@Override
+	public String getTestName() {
+		return FilenameUtils.getName(feature);
+	}
 
-        ClassLoader classLoader = getClass().getClassLoader();
-        ResourceLoader resourceLoader = new MultiLoader(classLoader);
+	@Test(groups = "cukes", description = "Runs Cuke Features")
+	public void CukerRunner() throws Throwable {
 
-        RuntimeOptionsFactory cukeRunFactory = new RuntimeOptionsFactory(getClass());
+		ClassLoader classLoader = getClass().getClassLoader();
+		ResourceLoader resourceLoader = new MultiLoader(classLoader);
 
-        RuntimeOptions cukeRun = cukeRunFactory.create();
+		RuntimeOptionsFactory cukeRunFactory = new RuntimeOptionsFactory(getClass());
 
-        cukeRun.getGlue().clear();
-        cukeRun.getGlue().add("classpath:");
+		RuntimeOptions cukeRun = cukeRunFactory.create();
 
-        cukeRun.getFeaturePaths().clear();
-        cukeRun.getFeaturePaths().add(feature);
-        
-        if (!tags.isEmpty()) {
-            for (String tagname : tags.split("--tags")) {
-                if (!tagname.trim().isEmpty()) {
-                	cukeRun.getFilters().add(tagname.trim());
-                }
-            }
-        }
+		cukeRun.getGlue().clear();
+		cukeRun.getGlue().add("classpath:");
 
-        ClassFinder classFinder = new ResourceLoaderClassFinder(resourceLoader, classLoader);
-        cukeruntime = new cucumber.runtime.Runtime(resourceLoader, classFinder, classLoader, cukeRun);
-        try {
-        	cukeruntime.run();
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
-        if (!cukeruntime.getErrors().isEmpty()) {
-            throw new CucumberException(cukeruntime.getErrors().get(0));
-        }
-        
-    }
+		cukeRun.getFeaturePaths().clear();
+		cukeRun.getFeaturePaths().add(feature);
 
+		if (!tags.isEmpty()) {
+			for (String tagname : tags.split("--tags")) {
+				if (!tagname.trim().isEmpty()) {
+					cukeRun.getFilters().add(tagname.trim());
+				}
+			}
+		}
+
+		ClassFinder classFinder = new ResourceLoaderClassFinder(resourceLoader, classLoader);
+		cukeruntime = new cucumber.runtime.Runtime(resourceLoader, classFinder, classLoader, cukeRun);
+		try {
+			cukeruntime.run();
+		} catch (IOException ex) {
+			throw new RuntimeException(ex);
+		}
+		if (!cukeruntime.getErrors().isEmpty()) {
+			throw new CucumberException(cukeruntime.getErrors().get(0));
+		}
+
+	}
 
 }

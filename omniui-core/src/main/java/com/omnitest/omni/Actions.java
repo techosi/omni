@@ -6,23 +6,49 @@ import org.openqa.selenium.support.ui.Select;
 
 import static com.omnitest.omni.DriverFactory.getDriver;
 
+import java.util.Set;
+
 /**
  * Created by rtatavarty on 8/28/17.
  */
 public class Actions {
+	
+	/**
+	 *   To open given URL in browser
+	 */
+	public static void openapplication(String URL) {
+		getDriver().get(URL);
+	}
 
-    public static void openapplication(String URL){
-        getDriver().get(URL);
+	public static void type(By locator, String text) {
+		getDriver().findElement(locator).sendKeys(text);
 
-    }
+	}
 
-    public static void type(By locator, String text){
-        getDriver().findElement(locator).sendKeys(text);
+	public static void click(By locator) {
+		getDriver().findElement(locator).click();
+	}
 
-    }
+	public static void quit() {
+		if (getDriver() != null) {
+			getDriver().quit();
+		}
+	}
+	
+	/**
+	 *   To close the browser 
+	 */
+	public static void close() {
+		if (getDriver() != null) {
+			getDriver().close();
+		}
+	}
 
-    public static void click ( By locator){
-        getDriver().findElement(locator).click();
-    }
+	/**
+	 *   To switch from another window to active window
+	 */
+	public static WebElement switchToActiveWindow() {
+		return getDriver().switchTo().activeElement();
+	}
 
 }
