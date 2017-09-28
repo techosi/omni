@@ -2,11 +2,10 @@ package com.omnitest.omni;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
-
-import static com.omnitest.omni.DriverFactory.getDriver;
 
 import java.util.Set;
+
+import static com.omnitest.omni.DriverFactory.getDriver;
 
 /**
  * Created by rtatavarty on 8/28/17.
@@ -49,6 +48,18 @@ public class Actions {
 	 */
 	public static WebElement switchToActiveWindow() {
 		return getDriver().switchTo().activeElement();
+	}
+
+	public static String getWindowHandle() {
+		return getDriver().getWindowHandle();
+	}
+
+	public static Set<String> getAllWindowHandles() {
+		return getDriver().getWindowHandles();
+	}
+
+	public static String getWindowTitle() {
+		return getDriver().getTitle();
 	}
 
 }
