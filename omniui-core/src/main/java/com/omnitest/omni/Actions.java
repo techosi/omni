@@ -62,4 +62,11 @@ public class Actions {
 		return getDriver().getTitle();
 	}
 
+	public static void goBack() {
+		getDriver().navigate().back();
+	}
+	public static void goForward() {
+		getDriver().navigate().forward();
+	}
+
 }
